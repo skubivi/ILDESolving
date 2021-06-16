@@ -54,7 +54,7 @@ public class HigherDegreeEquation {
         int root = findRoot(k);
         int sum = 0;
         for (int i = maxDegree(k); i > 0; i--) {
-            sum =findValueOfDegree(k, i) + root * sum;
+            sum = findValueOfDegree(k, i) + root * sum;
             kN.add(new Ratio(i - 1, sum));
         }
         return kN;
@@ -65,11 +65,14 @@ public class HigherDegreeEquation {
     }
 
     private void solve(ArrayList<Ratio> k) {
-        if (maxDegree(k) > 2 && findRoot(k) != -10000) {
+        if (findValueOfDegree(k, maxDegree(k)) < 0 && maxDegree(k) > 2) {
+            for (int i = 0; i < k.size(); i++) {
+                k.get(i).setDegree(k.get(i).getDegree() * -1);
+            }
+        } else if (maxDegree(k) > 2) {
             eqR.add((double) findRoot(k));
             solve(gScheme(k));
-        }
-        if (maxDegree(k) == 2) {
+        } else if (maxDegree(k) == 2) {
             double a = findValueOfDegree(k, 2);
             double b = findValueOfDegree(k, 1);
             double c = findValueOfDegree(k, 0);
@@ -79,10 +82,15 @@ public class HigherDegreeEquation {
                 eqR.add(((-b - Math.sqrt(d)) / (2 * a)));
             } else if (d == 0) {
                 eqR.add(-b / (2 * a));
+                eqR.add(-b / (2 * a));
             } else if (d < 0) {
                 eqI.add(new INumb(-b / (2 * a), Math.sqrt(Math.abs(d)) / (2 * a)));
                 eqI.add(new INumb(-b / (2 * a), -Math.sqrt(Math.abs(d)) / (2 * a)));
             }
+        } else if (maxDegree(k) == 1) {
+            double a = findValueOfDegree(k, 1);
+            double b = findValueOfDegree(k, 0);
+            eqR.add(-b / a);
         }
     }
 
@@ -96,11 +104,10 @@ public class HigherDegreeEquation {
 
     public static void main(String[] args) {
         ArrayList<Ratio> k = new ArrayList<>();
-        k.add(new Ratio(4, 1));
         k.add(new Ratio(3, 4));
-        k.add(new Ratio(2, -1));
-        k.add(new Ratio(1, -16));
-        k.add(new Ratio(0, -12));
+        k.add(new Ratio(2, 16));
+        k.add(new Ratio(1, -1));
+        k.add(new Ratio(0, -4));
         HigherDegreeEquation f = new HigherDegreeEquation(k);
         f.solve();
         System.out.println("Вещественные корни");

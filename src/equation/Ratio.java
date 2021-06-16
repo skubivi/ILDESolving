@@ -8,6 +8,10 @@ public class Ratio {
         degree = d;
         value = v;
     }
+    Ratio(Ratio other){
+        degree = other.getDegree();
+        value = other.getValue();
+    }
 
     public int getDegree() {
         return degree;
@@ -15,5 +19,9 @@ public class Ratio {
 
     public int getValue() {
         return value;
+    }
+
+    public void setDegree(int degree) {
+        this.degree = degree;
     }
 }
