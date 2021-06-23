@@ -102,7 +102,7 @@ public class HigherDegreeEquation {
         return eqI;
     }
 
-    public static void main(String[] args) {
+    private static void test(){
         ArrayList<Ratio> k = new ArrayList<>();
         k.add(new Ratio(3, 4));
         k.add(new Ratio(2, 16));
@@ -118,5 +118,9 @@ public class HigherDegreeEquation {
         for (int i = 0; i < f.getEqI().size(); i++) {
             System.out.println(f.getEqI().get(i).getR() + " " + f.getEqI().get(i).getI());
         }
+    }
+
+    public static void main(String[] args) {
+        test();
     }
 }

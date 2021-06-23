@@ -108,10 +108,14 @@ public class Fraction {
         return denominator;
     }
 
-    public static void main(String[] args) {
+    private static void test(){
         Fraction a = new Fraction(0);
         Fraction b = new Fraction(1, 3);
         b.div(a);
         b.print();
+    }
+
+    public static void main(String[] args) {
+        test();
     }
 }
