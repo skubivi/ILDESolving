@@ -14,10 +14,10 @@ public class INumb {
     }
 
     public double getI() {
-        return i;
+        return Math.abs(i);
     }
 
     public boolean equal(INumb other) {
-        return (this.r == other.r && this.i == other.i);
+        return (this.r == other.r && Math.abs(this.i) == Math.abs(other.i));
     }
 }
