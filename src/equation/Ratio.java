@@ -4,7 +4,7 @@ public class Ratio {
     private int degree;
     private int value;
 
-    Ratio(int d, int v) {
+    public Ratio(int d, int v) {
         degree = d;
         value = v;
     }

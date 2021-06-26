@@ -7,7 +7,7 @@ public class HigherDegreeEquation {
     private ArrayList<Double> eqR = new ArrayList<>();
     private ArrayList<INumb> eqI = new ArrayList<>();
 
-    HigherDegreeEquation(ArrayList<Ratio> k) {
+    public HigherDegreeEquation(ArrayList<Ratio> k) {
         this.k = k;
     }
 
@@ -102,7 +102,7 @@ public class HigherDegreeEquation {
         return eqI;
     }
 
-    private static void test(){
+    private static void test() {
         ArrayList<Ratio> k = new ArrayList<>();
         k.add(new Ratio(3, 4));
         k.add(new Ratio(2, 16));

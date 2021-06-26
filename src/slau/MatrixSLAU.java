@@ -8,7 +8,7 @@ public class MatrixSLAU {
     private final ArrayList<Fraction> k;
     private ArrayList<Fraction> eq = new ArrayList<>();
 
-    MatrixSLAU(ArrayList<ArrayList<Fraction>> ratio, ArrayList<Fraction> k) {
+    public MatrixSLAU(ArrayList<ArrayList<Fraction>> ratio, ArrayList<Fraction> k) {
         this.k = k;
         this.ratio = ratio;
         n = ratio.size();
@@ -134,7 +134,7 @@ public class MatrixSLAU {
         }
     }
 
-    private static void test(){
+    private static void test() {
         ArrayList<Fraction> d1 = new ArrayList<>();
         ArrayList<Fraction> d2 = new ArrayList<>();
         ArrayList<Fraction> d3 = new ArrayList<>();
