@@ -14,7 +14,7 @@ public class ILDE {
     private int kind;
     ChEquation lE;
 
-    ILDE(ArrayList<Ratio> k, String f, int kind) {
+    public ILDE(ArrayList<Ratio> k, String f, int kind) {
         this.k = ratioToFullRatio(k);
         this.f = f;
         this.kind = kind;
@@ -60,8 +60,7 @@ public class ILDE {
                 nR.add(0, new Ratio(nR.size(), 0));
             }
             nNR = nR;
-        }
-        else {
+        } else {
             nNR = new ArrayList<>();
             for (int i = 0; i <= degree; i++) {
                 nNR.add(new Ratio(nR.get(nR.size() - i - 1)));
@@ -88,7 +87,7 @@ public class ILDE {
         for (int i = s; i <= maxDegree + s; i++) {
             tempR.add(new Ratio(i, 1));
         }
-        for(int i = 0; i < s; i++){
+        for (int i = 0; i < s; i++) {
             tempR = derivativeK1(tempR);
         }
         ArrayList<ArrayList<Fraction>> f = new ArrayList<>();
@@ -121,8 +120,8 @@ public class ILDE {
         ArrayList<Fraction> nF = ratioToFraction(temp);
 
         int c = 0;
-        for (int i = 0; i < lE.getEq().size(); i++){
-            if (lE.getEq().get(i).getValue() == 0){
+        for (int i = 0; i < lE.getEq().size(); i++) {
+            if (lE.getEq().get(i).getValue() == 0) {
                 c = lE.getEq().get(i).getQuantity();
                 break;
             }
@@ -164,9 +163,11 @@ public class ILDE {
             }
         }
 
-        String rE = rightE();
-        if (!rE.equals(""))
-            eq += " + " + rE;
+        if (!f.equals("") && !f.equals("0")) {
+            String rE = rightE();
+            if (!rE.equals(""))
+                eq += " + " + rE;
+        }
 
         eq = "y = " + eq;
     }

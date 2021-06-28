@@ -3,6 +3,14 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<GridPane fx:controller="sample.Controller"
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.control.TextField?>
+<FlowPane fx:controller="sample.Controller"
+          orientation="VERTICAL"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-</GridPane>
+    <Label maxWidth="300">
+        Введите n
+    </Label>
+    <TextField fx:id="nT"/>
+    <Button onAction="#click">Ввести</Button>
+</FlowPane>
