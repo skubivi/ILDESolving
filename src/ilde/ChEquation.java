@@ -35,8 +35,8 @@ public class ChEquation {
     private int findValue(double d, ArrayList<Root> r) {
         int f = -1;
         for (int i = 0; i < r.size(); i++) {
-            if(!r.get(i).isI()){
-                if(r.get(i).getValue() == d) f = i;
+            if (!r.get(i).isI()) {
+                if (r.get(i).getValue() == d) f = i;
             }
         }
         return f;
@@ -45,8 +45,8 @@ public class ChEquation {
     private int findValue(INumb d, ArrayList<Root> r) {
         int f = -1;
         for (int i = 0; i < r.size(); i++) {
-            if(r.get(i).isI()){
-                if(r.get(i).getIValue().equal(d)) f = i;
+            if (r.get(i).isI()) {
+                if (r.get(i).getIValue().equal(d)) f = i;
             }
         }
         return f;
@@ -86,11 +86,11 @@ public class ChEquation {
         HigherDegreeEquation equation = new HigherDegreeEquation(k);
         equation.solve();
         ArrayList<Root> nR = changeRoot(equation.getEqR());
-        for(int i = 0; i < nR.size(); i++){
+        for (int i = 0; i < nR.size(); i++) {
             eq.add(nR.get(i));
         }
         nR = changeRootI(equation.getEqI());
-        for(int i = 0; i < nR.size(); i++){
+        for (int i = 0; i < nR.size(); i++) {
             eq.add(nR.get(i));
         }
     }
@@ -99,14 +99,15 @@ public class ChEquation {
         return eq;
     }
 
-    private static void test(){
+    private static void test() {
         ArrayList<Ratio> k = new ArrayList<>();
-        k.add(new Ratio(2, 1));
-        k.add(new Ratio(1, -4));
-        k.add(new Ratio(0, 4));
+        k.add(new Ratio(3, 4));
+        k.add(new Ratio(2, 16));
+        k.add(new Ratio(1, -1));
+        k.add(new Ratio(0, -4));
         ChEquation f = new ChEquation(k);
         f.solve();
-        for(int i = 0; i < f.getEq().size(); i++){
+        for (int i = 0; i < f.getEq().size(); i++) {
             f.getEq().get(i).print();
         }
     }

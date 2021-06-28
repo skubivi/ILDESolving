@@ -8,7 +8,13 @@ public class Ratio {
         degree = d;
         value = v;
     }
-    Ratio(Ratio other){
+
+    public Ratio(Ratio other) {
+        degree = other.getDegree();
+        value = other.getValue();
+    }
+
+    public void copy(Ratio other){
         degree = other.getDegree();
         value = other.getValue();
     }

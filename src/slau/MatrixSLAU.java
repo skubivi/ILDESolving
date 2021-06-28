@@ -115,7 +115,7 @@ public class MatrixSLAU {
         eq = temp;
     }
 
-    private void print() {
+    public void print() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 ratio.get(i).get(j).print();
@@ -132,6 +132,10 @@ public class MatrixSLAU {
             eq.get(i).print();
             System.out.print(" ");
         }
+    }
+
+    public ArrayList<Fraction> getEq() {
+        return eq;
     }
 
     private static void test() {

@@ -2,13 +2,30 @@ package equation;
 
 import java.util.ArrayList;
 
+import static ilde.StringRatio.sortRatio;
+
 public class HigherDegreeEquation {
     private ArrayList<Ratio> k;
     private ArrayList<Double> eqR = new ArrayList<>();
     private ArrayList<INumb> eqI = new ArrayList<>();
 
     public HigherDegreeEquation(ArrayList<Ratio> k) {
-        this.k = k;
+        this.k = ratioToFullRatio(k);
+    }
+
+    private static ArrayList<Ratio> ratioToFullRatio(ArrayList<Ratio> r) {
+        ArrayList<Ratio> nR = new ArrayList<>();
+        sortRatio(r);
+        int maxDegree = r.get(0).getDegree();
+        for (int i = 0; i <= maxDegree; i++) {
+            nR.add(new Ratio(maxDegree - i, 0));
+        }
+
+        for (int i = 0; i < r.size(); i++) {
+            nR.set(maxDegree - r.get(i).getDegree(), new Ratio(r.get(i)));
+        }
+
+        return nR;
     }
 
     private int maxDegree(ArrayList<Ratio> k) {

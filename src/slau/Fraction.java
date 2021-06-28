@@ -4,7 +4,7 @@ public class Fraction {
     private int numerator;
     private int denominator;
 
-    Fraction(int a) {
+    public Fraction(int a) {
         numerator = a;
         denominator = 1;
     }
@@ -106,6 +106,10 @@ public class Fraction {
 
     public int getDenominator() {
         return denominator;
+    }
+
+    public String toString(){
+        return numerator + "/" + denominator;
     }
 
     private static void test(){
