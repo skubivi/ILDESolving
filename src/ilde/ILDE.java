@@ -12,11 +12,12 @@ public class ILDE {
     private String f;
     private String eq = "";
     private int kind;
+    private int mul;
     ChEquation lE;
 
     //Конструктор
     public ILDE(ArrayList<Ratio> k, String f, int kind) {
-        makeInt(k);
+        this.mul = makeInt(k);
         this.k = ratioToFullRatio(k);
         this.f = f;
         this.kind = kind;
@@ -29,7 +30,7 @@ public class ILDE {
         return splitter[1].length();
     }
 
-    private static void makeInt(ArrayList<Ratio> k) {
+    private static int makeInt(ArrayList<Ratio> k) {
         int max = 0;
         for (int i = 0; i < k.size(); i++){
             int temp = decimal(k.get(i).getDValue());
@@ -38,6 +39,7 @@ public class ILDE {
         for (int i = 0; i < k.size(); i++){
             k.get(i).makeInt(max);
         }
+        return max;
     }
 
     //Решение правой части
@@ -154,6 +156,9 @@ public class ILDE {
         ArrayList<ArrayList<Fraction>> koef = eqToMatrix(k, maxDegree, c);
         MatrixSLAU r = new MatrixSLAU(koef, nF);
         r.solve();
+        for (int i = 0; i < r.getEq().size(); i++){
+            r.getEq().get(i).mul((int)Math.pow(10, mul));
+        }
         for (int i = 0; i < r.getEq().size(); i++) {
             if (!rE.equals(""))
                 rE = rE + " + ";
@@ -207,7 +212,7 @@ public class ILDE {
         k.add(new Ratio(2, 1));
         k.add(new Ratio(1, -7));
         k.add(new Ratio(0, 12));
-        ILDE f = new ILDE(k, "", 1);
+        ILDE f = new ILDE(k, "10 * t ^ 1", 1);
         f.solve();
         System.out.println(f.getEq());
     }

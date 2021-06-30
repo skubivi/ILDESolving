@@ -37,6 +37,14 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    private static void showAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Ошибка");
+        alert.setContentText("Введите данные правильно");
+
+        alert.showAndWait();
+    }
+
     //Создание окна для ввода a0..an
     public static void cont(int n, ActionEvent event) {
         FlowPane root = new FlowPane();
@@ -77,6 +85,8 @@ public class Main extends Application {
                     }
                     if (c)
                         end(tA, n, actionEvent);
+                    else
+                        showAlert();
                 } catch (Exception e) {
 
                 }
