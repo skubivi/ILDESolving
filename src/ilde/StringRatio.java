@@ -4,7 +4,9 @@ import equation.Ratio;
 
 import java.util.ArrayList;
 
+//Вспомогательный класс для сортировки списка коэффициентов, преобразования строки в список коэффициентов и наоборот
 public class StringRatio {
+    //Преобразование списка в строку
     public static String ratioToString(ArrayList<Ratio> r) {
         sortRatio(r);
         String nR = "";
@@ -26,6 +28,7 @@ public class StringRatio {
         return nR;
     }
 
+    //Сортировка
     public static void sortRatio(ArrayList<Ratio> r) {
         for (int i = 0; i < r.size(); i++) {
             for (int j = 0; j < r.size() - 1; j++) {
@@ -38,6 +41,7 @@ public class StringRatio {
         }
     }
 
+    //Преобразование строки в список
     public static ArrayList<Ratio> stringToRatio(String r) {
         ArrayList<Ratio> nR = new ArrayList<>();
         String r2 = deleteSpace(r);
@@ -71,10 +75,12 @@ public class StringRatio {
         return nR;
     }
 
+    //Удаление пробелов в строке
     private static String deleteSpace(String r) {
         return r.replaceAll("\\s+", "");
     }
 
+    //Поиск '+' или '-' в строке
     private static int findPM(String r) {
         for (int i = 1; i < r.length(); i++) {
             if (r.charAt(i) == '+' || r.charAt(i) == '-') return i;
@@ -82,6 +88,7 @@ public class StringRatio {
         return -1;
     }
 
+    //Поиск данного символа в строке
     private static int findC(String r, char ch) {
         for (int i = 0; i < r.length(); i++) {
             if (r.charAt(i) == ch) return i;

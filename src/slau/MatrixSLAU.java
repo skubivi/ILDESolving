@@ -2,22 +2,26 @@ package slau;
 
 import java.util.ArrayList;
 
+//Решение СЛАУ с помощью матриц
 public class MatrixSLAU {
     private final int n;
     private final ArrayList<ArrayList<Fraction>> ratio;
     private final ArrayList<Fraction> k;
     private ArrayList<Fraction> eq = new ArrayList<>();
 
+    //Конструктор
     public MatrixSLAU(ArrayList<ArrayList<Fraction>> ratio, ArrayList<Fraction> k) {
         this.k = k;
         this.ratio = ratio;
         n = ratio.size();
     }
 
+    //Метод Гаусса
     public void gauss() {
         gauss(ratio, k);
     }
 
+    //Рекурсивный метод Гаусса
     private static void gauss(ArrayList<ArrayList<Fraction>> ratio, ArrayList<Fraction> k) {
         if (ratio.size() > 1) {
             Fraction c1 = new Fraction(ratio.get(0).get(0));
@@ -69,6 +73,7 @@ public class MatrixSLAU {
         }
     }
 
+    //Рекурсивная функция решения
     private static void solve(ArrayList<ArrayList<Fraction>> ratio, ArrayList<Fraction> k, ArrayList<Fraction> eq) {
         if (ratio.size() > 0) {
             int check = -1;
@@ -105,6 +110,7 @@ public class MatrixSLAU {
         }
     }
 
+    //Функция решения
     public void solve() {
         gauss();
         solve(ratio, k, eq);
@@ -115,6 +121,7 @@ public class MatrixSLAU {
         eq = temp;
     }
 
+    //Вывод матрицы для отладки
     public void print() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -126,6 +133,7 @@ public class MatrixSLAU {
         }
     }
 
+    //Вывод корней для отладки
     private void printEq() {
         for (int i = 0; i < n; i++) {
             System.out.print("x" + (i + 1) + " = ");
@@ -134,6 +142,7 @@ public class MatrixSLAU {
         }
     }
 
+    //Возвращает список корней
     public ArrayList<Fraction> getEq() {
         return eq;
     }

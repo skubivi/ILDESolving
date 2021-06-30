@@ -4,14 +4,17 @@ import equation.*;
 
 import java.util.ArrayList;
 
+//Класс для решения характеристического уравнения
 public class ChEquation {
     private ArrayList<Ratio> k;
     private ArrayList<Root> eq = new ArrayList<>();
 
+    //Конструктор
     ChEquation(ArrayList<Ratio> k) {
         this.k = k;
     }
 
+    //проверка на существование рационального корня
     private boolean exists(double d, ArrayList<Root> r) {
         boolean exist = false;
         for (int i = 0; i < r.size(); i++) {
@@ -22,6 +25,7 @@ public class ChEquation {
         return exist;
     }
 
+    //Проверка на существование комплексного корня
     private boolean exists(INumb d, ArrayList<Root> r) {
         boolean exist = false;
         for (int i = 0; i < r.size(); i++) {
@@ -32,6 +36,7 @@ public class ChEquation {
         return exist;
     }
 
+    //Возвращает позицию рационального корня в списке
     private int findValue(double d, ArrayList<Root> r) {
         int f = -1;
         for (int i = 0; i < r.size(); i++) {
@@ -42,6 +47,7 @@ public class ChEquation {
         return f;
     }
 
+    //Возвращает позицию комплексного корня в списке
     private int findValue(INumb d, ArrayList<Root> r) {
         int f = -1;
         for (int i = 0; i < r.size(); i++) {
@@ -52,6 +58,7 @@ public class ChEquation {
         return f;
     }
 
+    //Добавляет рациональный корень в список
     private void addRoot(double d, ArrayList<Root> r) {
         if (!exists(d, r)) r.add(new Root(d, 1));
         else {
@@ -59,6 +66,7 @@ public class ChEquation {
         }
     }
 
+    //Добавляет комплексный корень в список
     private void addRoot(INumb d, ArrayList<Root> r) {
         if (!exists(d, r)) r.add(new Root(d, 1));
         else {
@@ -66,6 +74,7 @@ public class ChEquation {
         }
     }
 
+    //Преобразует список рациональных корней в список корней с помощью класса Root
     private ArrayList<Root> changeRoot(ArrayList<Double> k) {
         ArrayList<Root> nR = new ArrayList<>();
         for (int i = 0; i < k.size(); i++) {
@@ -74,6 +83,7 @@ public class ChEquation {
         return nR;
     }
 
+    //Преобразует список комплексных корней в список корней с помощью класса Root
     private ArrayList<Root> changeRootI(ArrayList<INumb> k) {
         ArrayList<Root> nR = new ArrayList<>();
         for (int i = 0; i < k.size(); i++) {
@@ -82,6 +92,8 @@ public class ChEquation {
         return nR;
     }
 
+    //Решение характеристического уравнения с помощью класса HigherDegreeEquation
+    //и преобразование его корней в список Root
     public void solve() {
         HigherDegreeEquation equation = new HigherDegreeEquation(k);
         equation.solve();
@@ -95,6 +107,7 @@ public class ChEquation {
         }
     }
 
+    //Возвращает корни
     public ArrayList<Root> getEq() {
         return eq;
     }

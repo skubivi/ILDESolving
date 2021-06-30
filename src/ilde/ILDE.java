@@ -14,7 +14,9 @@ public class ILDE {
     private int kind;
     ChEquation lE;
 
+    //Конструктор
     public ILDE(ArrayList<Ratio> k, String f, int kind) {
+        makeInt(k);
         this.k = ratioToFullRatio(k);
         this.f = f;
         this.kind = kind;
@@ -22,12 +24,30 @@ public class ILDE {
         lE.solve();
     }
 
+    private static int decimal (double d){
+        String[] splitter = String.valueOf(d).split("\\.");
+        return splitter[1].length();
+    }
+
+    private static void makeInt(ArrayList<Ratio> k) {
+        int max = 0;
+        for (int i = 0; i < k.size(); i++){
+            int temp = decimal(k.get(i).getDValue());
+            if (temp > max) max = temp;
+        }
+        for (int i = 0; i < k.size(); i++){
+            k.get(i).makeInt(max);
+        }
+    }
+
+    //Решение правой части
     private String rightE() {
         String rE = "";
         if (kind == 1) rE += k1();
         return rE;
     }
 
+    //Преобразование списка Ratio в список Fraction
     private static ArrayList<Fraction> ratioToFraction(ArrayList<Ratio> r) {
         ArrayList<Fraction> f = new ArrayList<>();
         ArrayList<Ratio> nR = ratioToFullRatio(r);
@@ -37,6 +57,7 @@ public class ILDE {
         return f;
     }
 
+    //Функция дополнения коэффициентов до полных (например если коэффициент при x^2 равен 0, то он так и будет записан)
     private static ArrayList<Ratio> ratioToFullRatio(ArrayList<Ratio> r) {
         ArrayList<Ratio> nR = new ArrayList<>();
         sortRatio(r);
@@ -52,6 +73,7 @@ public class ILDE {
         return nR;
     }
 
+    //Функция дополнения коэффициентов до полных + дополнение списка до коэффициента при x^degree
     private static ArrayList<Ratio> ratioToFullRatio(ArrayList<Ratio> r, int degree) {
         ArrayList<Ratio> nR = ratioToFullRatio(r);
         ArrayList<Ratio> nNR;
@@ -70,6 +92,7 @@ public class ILDE {
         return nNR;
     }
 
+    //Производная многочлена
     private static ArrayList<Ratio> derivativeK1(ArrayList<Ratio> r) {
         ArrayList<Ratio> nR = new ArrayList<>();
         for (int i = 0; i < r.size(); i++) {
@@ -81,6 +104,7 @@ public class ILDE {
         return nR;
     }
 
+    //Преобразование левой части в матрицу для реализации метода неопределённых коэфициентов
     private static ArrayList<ArrayList<Fraction>> eqToMatrix(ArrayList<Ratio> k, int maxDegree, int s) {
         ArrayList<Ratio> nR = ratioToFullRatio(k, maxDegree + s);
         ArrayList<Ratio> tempR = new ArrayList<>();
@@ -111,7 +135,7 @@ public class ILDE {
         return f;
     }
 
-
+    //Реализация метода неопределённых коэффициентов, если функция в правой части - это многочлен
     private String k1() {
         String rE = "";
 
@@ -139,6 +163,7 @@ public class ILDE {
         return rE;
     }
 
+    //Метод решения
     public void solve() {
         int n = 1;
         for (int i = 0; i < lE.getEq().size(); i++) {
@@ -172,6 +197,7 @@ public class ILDE {
         eq = "y = " + eq;
     }
 
+    //Возвращает ответ
     public String getEq() {
         return eq;
     }
@@ -181,7 +207,7 @@ public class ILDE {
         k.add(new Ratio(2, 1));
         k.add(new Ratio(1, -7));
         k.add(new Ratio(0, 12));
-        ILDE f = new ILDE(k, "1 * t^1", 1);
+        ILDE f = new ILDE(k, "", 1);
         f.solve();
         System.out.println(f.getEq());
     }
@@ -209,6 +235,27 @@ public class ILDE {
         k = ratioToFullRatio(k);
         for (int i = 0; i < k.size(); i++) {
             System.out.println(k.get(i).getDegree() + " " + k.get(i).getValue());
+        }
+    }
+
+    private static void test4() {
+        ArrayList<Ratio> k = new ArrayList<>();
+        k.add(new Ratio(2, 0.5));
+        k.add(new Ratio(1, -3.5));
+        k.add(new Ratio(0, 6));
+        ILDE f = new ILDE(k, "", 1);
+        f.solve();
+        System.out.println(f.getEq());
+    }
+
+    private static void test5(){
+        ArrayList<Ratio> k = new ArrayList<>();
+        k.add(new Ratio(2, 0.5));
+        k.add(new Ratio(1, -3.5));
+        k.add(new Ratio(0, 6));
+        makeInt(k);
+        for (int i = 0; i < k.size(); i++){
+            System.out.println(k.get(i).getValue() + " " + k.get(i).getDegree());
         }
     }
 

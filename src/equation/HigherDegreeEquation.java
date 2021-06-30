@@ -4,15 +4,18 @@ import java.util.ArrayList;
 
 import static ilde.StringRatio.sortRatio;
 
+//Класс для решения уравнений высших степеней, по заданным коэффициентам
 public class HigherDegreeEquation {
     private ArrayList<Ratio> k;
     private ArrayList<Double> eqR = new ArrayList<>();
     private ArrayList<INumb> eqI = new ArrayList<>();
 
+    //Конструктор
     public HigherDegreeEquation(ArrayList<Ratio> k) {
         this.k = ratioToFullRatio(k);
     }
 
+    //Функция дополнения коэффициентов до полных (например если коэффициент при x^2 равен 0, то он так и будет записан)
     private static ArrayList<Ratio> ratioToFullRatio(ArrayList<Ratio> r) {
         ArrayList<Ratio> nR = new ArrayList<>();
         sortRatio(r);
@@ -28,6 +31,7 @@ public class HigherDegreeEquation {
         return nR;
     }
 
+    //Функция поиска наивысшей степени
     private int maxDegree(ArrayList<Ratio> k) {
         int max = 0;
         for (int i = 0; i < k.size(); i++) {
@@ -36,6 +40,7 @@ public class HigherDegreeEquation {
         return max;
     }
 
+    //Функция поиска коэффициента при заданной степени
     private int findValueOfDegree(ArrayList<Ratio> k, int degree) {
         for (int i = 0; i < k.size(); i++) {
             if (k.get(i).getDegree() == degree) return k.get(i).getValue();
@@ -43,6 +48,7 @@ public class HigherDegreeEquation {
         return 0;
     }
 
+    //Возвращает все целые делители заданного числа
     private ArrayList<Integer> findDivisors(int a) {
         a = Math.abs(a);
         ArrayList<Integer> d = new ArrayList<>();
@@ -53,6 +59,7 @@ public class HigherDegreeEquation {
         return d;
     }
 
+    //Поиск корня уравнения, с помощью делителей при свободном члене
     private int findRoot(ArrayList<Ratio> k) {
         int freeMember = findValueOfDegree(k, 0);
         ArrayList<Integer> d = findDivisors(freeMember);
@@ -66,6 +73,7 @@ public class HigherDegreeEquation {
         return -10000;
     }
 
+    //Схема Горнера
     private ArrayList<Ratio> gScheme(ArrayList<Ratio> k) {
         ArrayList<Ratio> kN = new ArrayList<>();
         int root = findRoot(k);
@@ -77,10 +85,12 @@ public class HigherDegreeEquation {
         return kN;
     }
 
+    //Функция решения
     public void solve() {
         solve(this.k);
     }
 
+    //Рекурсивная функция решения
     private void solve(ArrayList<Ratio> k) {
         if (findValueOfDegree(k, maxDegree(k)) < 0 && maxDegree(k) > 2) {
             for (int i = 0; i < k.size(); i++) {
@@ -111,10 +121,13 @@ public class HigherDegreeEquation {
         }
     }
 
+
+    //Возвращает рациональные корни
     public ArrayList<Double> getEqR() {
         return eqR;
     }
 
+    //Возвращает комплексные корни
     public ArrayList<INumb> getEqI() {
         return eqI;
     }

@@ -28,6 +28,7 @@ import java.util.Scanner;
 
 public class Main extends Application {
 
+    //Создание начального окна для ввода n
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
@@ -36,6 +37,7 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    //Создание окна для ввода a0..an
     public static void cont(int n, ActionEvent event) {
         FlowPane root = new FlowPane();
         root.setOrientation(Orientation.VERTICAL);
@@ -69,15 +71,40 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent actionEvent) {
                 try {
-                    end(tA, actionEvent);
+                    boolean c = check(tA.get(0));
+                    for (int i = 1; i < tA.size(); i++) {
+                        c = c && check(tA.get(i));
+                    }
+                    if (c)
+                        end(tA, n, actionEvent);
                 } catch (Exception e) {
 
                 }
             }
         });
+        Button back = new Button("Назад");
+        back.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Stage primaryStage = new Stage();
+                Parent root = null;
+                try {
+                    root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                primaryStage.setTitle("ILDE");
+                primaryStage.setScene(new Scene(root, 400, 500));
+                primaryStage.show();
 
-        Group bG = new Group(b);
-        root.getChildren().add(bG);
+                ((Node) (actionEvent.getSource())).getScene().getWindow().hide();
+            }
+        });
+
+        FlowPane bF = new FlowPane(b, back);
+        bF.setHgap(10);
+        bF.setVgap(20);
+        root.getChildren().add(bF);
 
         Stage stage = new Stage();
         stage.setTitle("ILDE");
@@ -87,7 +114,20 @@ public class Main extends Application {
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
 
-    private static void end(ArrayList<TextField> tA, ActionEvent event) {
+    private static boolean check(TextField a) {
+        boolean b = true;
+        if (a.getCharacters().toString().equals("")) return true;
+        try {
+            Double.parseDouble(a.getCharacters().toString());
+            b = true;
+        } catch (Exception e) {
+            b = false;
+        }
+        return b;
+    }
+
+    //Создание окна для выбора файла функции и решения НЛДУ
+    private static void end(ArrayList<TextField> tA, int n, ActionEvent event) {
         File dir = new File(System.getProperty("user.dir") + "\\functions");
         ArrayList<File> lst = new ArrayList<>();
         for (File file : dir.listFiles()) {
@@ -123,9 +163,9 @@ public class Main extends Application {
                 String s = "";
                 ArrayList<Ratio> r = new ArrayList<>();
                 for (int i = 0; i < tA.size(); i++) {
-                    int v = 0;
+                    double v = 0;
                     if (tA.get(i).getCharacters().toString() != "")
-                        v = Integer.parseInt(tA.get(i).getCharacters().toString());
+                        v = Double.parseDouble(tA.get(i).getCharacters().toString());
                     r.add(new Ratio(tA.size() - i - 1, v));
                 }
                 int c = -1;
@@ -147,14 +187,25 @@ public class Main extends Application {
                         System.out.println(eq);
                         writer.write(eq);
                         writer.flush();
+                        sOut(eq, actionEvent);
                     } catch (IOException e) {
                     }
                 }
             }
         });
 
+        Button back = new Button("Назад");
+        back.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                cont(n, actionEvent);
+            }
+        });
 
-        root.getChildren().add(load);
+        FlowPane bF = new FlowPane(load, back);
+        bF.setHgap(10);
+        bF.setVgap(20);
+        root.getChildren().add(bF);
 
         Stage stage = new Stage();
         stage.setTitle("ILDE");
@@ -163,6 +214,21 @@ public class Main extends Application {
 
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
+
+    private static void sOut(String s, ActionEvent event){
+        FlowPane root = new FlowPane();
+
+        Label label = new Label(s);
+        root.getChildren().add(label);
+
+        Stage stage = new Stage();
+        stage.setTitle("ILDE");
+        stage.setScene(new Scene(root, 400, 500));
+        stage.show();
+
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+    }
+
 
     public static void main(String[] args) {
         launch(args);

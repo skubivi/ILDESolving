@@ -111,7 +111,7 @@
       <recent name="D:\Skubivi Git Projects\ILDESolving\src\sample" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.ILDE">
     <configuration default="true" type="Applet" factoryName="Applet">
       <module name="" />
       <option name="MAIN_CLASS_NAME" />
@@ -136,20 +136,6 @@
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
       <Port>5050</Port>
-    </configuration>
-    <configuration name="ChEquation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ilde.ChEquation" />
-      <module name="ILDESolving" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ilde.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
     </configuration>
     <configuration name="HigherDegreeEquation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="equation.HigherDegreeEquation" />
@@ -202,6 +188,20 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="slau.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Ratio" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="equation.Ratio" />
+      <module name="ILDESolving" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="equation.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -264,17 +264,17 @@
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.HigherDegreeEquation" />
       <item itemvalue="Application.MatrixSLAU" />
-      <item itemvalue="Application.ChEquation" />
       <item itemvalue="Application.ILDE" />
       <item itemvalue="Application.StringRatio" />
+      <item itemvalue="Application.Ratio" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ILDE" />
+        <item itemvalue="Application.Ratio" />
         <item itemvalue="Application.StringRatio" />
         <item itemvalue="Application.MatrixSLAU" />
         <item itemvalue="Application.HigherDegreeEquation" />
-        <item itemvalue="Application.ChEquation" />
       </list>
     </recent_temporary>
   </component>
@@ -292,7 +292,8 @@
       <workItem from="1623116066718" duration="15508000" />
       <workItem from="1623811864093" duration="12547000" />
       <workItem from="1623830041348" duration="66000" />
-      <workItem from="1624423459419" duration="44671000" />
+      <workItem from="1624423459419" duration="47787000" />
+      <workItem from="1625066245243" duration="3129000" />
     </task>
     <servers />
   </component>
@@ -328,22 +329,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="501" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1624782619970" />
-    <state width="1493" height="221" key="GridCell.Tab.0.bottom" timestamp="1624918577756">
+    <state width="1493" height="194" key="GridCell.Tab.0.bottom" timestamp="1625069368412">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="221" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1624918577756" />
-    <state width="1493" height="221" key="GridCell.Tab.0.center" timestamp="1624918577756">
+    <state width="1493" height="194" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1625069368412" />
+    <state width="1493" height="194" key="GridCell.Tab.0.center" timestamp="1625069368412">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="221" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1624918577756" />
-    <state width="1493" height="221" key="GridCell.Tab.0.left" timestamp="1624918577756">
+    <state width="1493" height="194" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1625069368412" />
+    <state width="1493" height="194" key="GridCell.Tab.0.left" timestamp="1625069368412">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="221" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1624918577756" />
-    <state width="1493" height="221" key="GridCell.Tab.0.right" timestamp="1624918577756">
+    <state width="1493" height="194" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1625069368412" />
+    <state width="1493" height="194" key="GridCell.Tab.0.right" timestamp="1625069368412">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="221" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1624918577756" />
+    <state width="1493" height="194" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1625069368412" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1624917136647">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

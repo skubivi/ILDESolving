@@ -8,6 +8,7 @@ public class Controller {
     @FXML
     private TextField nT;
 
+    //Функция кнопки на начальном экране
     @FXML
     public void click(ActionEvent event) {
         try {
